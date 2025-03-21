@@ -10,10 +10,10 @@
 <body>
 
 <div class="container">
-    <h1>Text To Speech Converter</h1>
+    <h1>Text To Speech <span id="word">Converter</span></h1>
     <main class="main">
         <section class="text">
-            <input type="text" placeholder="Write Anything here...">
+            <textarea name="textarea" id="input" placeholder="Write anything here..."></textarea>
         </section>
         <section class="footer">
             <select name="" id="choose">
@@ -22,7 +22,8 @@
                 <option value=""></option>
                 <option value=""></option>
             </select>
-            <button id="listen" type="button">Listen ▶️</button>
+            <button id="pause" type="button">Pause⏸️</button>
+            <button id="listen" type="button">Listen▶️</button>
         </section>
     </main>
 </div>
