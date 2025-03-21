@@ -14,12 +14,12 @@
     flex-direction: column;
 }
 .container h1{
-    font-size: 42px;
+    font-size: 48px;
     color: #F8F9FA;
     text-shadow: 0 0 15px rgba(128, 128, 128, 0.8);
     margin: 0px 0px 30px;
 }
-.text input{
+#input{
     height: 250px;
     width: 500px;
     outline: none;
@@ -31,12 +31,15 @@
     font-size: 20px;
     color: #F8F9FA;
     line-height: 30px;
-    padding: 0px 10px;
+    padding: 10px;
 }
-.text input::placeholder {
+#input::placeholder {
     color: #F8F9FA;
     font-size: 20px;
 }
+#input:focus::placeholder {
+    opacity: 0;
+}   
 #choose {
     width: 370px;
     height: 40px;
