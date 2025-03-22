@@ -94,6 +94,21 @@
     cursor: pointer;
 }
 #pause {
+    display: inline;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+    font-family: "Poppins",sans-serif;
+    background-color: #ff2963;
+    padding: 6px;
+    color: #F8F9FA;
+    cursor: pointer;
+    margin-right: 2px;
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.8);
+}
+#resume {
+    display: none;
     border: none;
     border-radius: 10px;
     outline: none;
