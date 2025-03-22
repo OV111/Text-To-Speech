@@ -15,10 +15,19 @@ resumeBtn.addEventListener("click", () => {
 });
 
 
+let voicesArray = [];
+const synth = window.speechSynthesis;
+
+function getVoice( ) {
+    voicesArray = synth.getVoices();
+    console.log(voicesArray);
+}
+synth.onvoiceschanged = getVoice;
+
 const play = () => {
     const text = textInput.value;
-    main.text = text;
     const lang = "en-US";
+    main.text = text;
     main.lang = lang;
     console.log(main);
 }
