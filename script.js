@@ -27,7 +27,6 @@ const synth = window.speechSynthesis;
 
 const playText = (text,voiceName) => {
     const lang = "en-US";
-    
     // Setting SpeechSynthesisUtterance
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
@@ -51,7 +50,7 @@ const getVoice = () => {
 
     let voice = voicesArray.find((x) => voicesToFind.includes(x.name));
 
-    console.log(voice);
+    // console.log(voice);
     if(voice) {
         console.log("voice founded");
         playText(text,voice);
