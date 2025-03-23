@@ -3,14 +3,10 @@ const pauseBtn = document.getElementById("pause");
 const resumeBtn = document.getElementById("resume");
 const listenBtn = document.getElementById("listen");
 
-
-
+const text = textInput.value;
 let voicesArray = [];
 const synth = window.speechSynthesis;
 
-
-
-const text = textInput.value;
 const playText = (text,voice) => {
     const lang = "en-US";
     
@@ -32,6 +28,7 @@ const getVoice = () => {
     });
     console.log(voice)
     if(voice) {
+        console.log("voice founded");
         playText(text,voice);
     } else {
         console.log("voice not found");
@@ -41,9 +38,6 @@ synth.onvoiceschanged = getVoice;
 
 
 listenBtn.addEventListener("click", getVoice);
-
-
-
 
 
 
