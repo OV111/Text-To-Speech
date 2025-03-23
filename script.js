@@ -61,11 +61,7 @@ const getVoice = () => {
 }
 synth.onvoiceschanged = getVoice;
 
-
 listenBtn.addEventListener("click", getVoice);
-
-
-
 
 pauseBtn.addEventListener("click", () => {
     pauseBtn.style.display = "none";
