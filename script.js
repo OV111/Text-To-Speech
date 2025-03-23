@@ -3,6 +3,10 @@ const pauseBtn = document.getElementById("pause");
 const resumeBtn = document.getElementById("resume");
 const listenBtn = document.getElementById("listen");
 
+
+const selectNode = document.querySelectorAll("#choose");
+console.log(selectNode[0][0].innerText)
+
 const text = textInput.value;
 let voicesArray = [];
 const synth = window.speechSynthesis;
@@ -17,16 +21,23 @@ const playText = (text,voice) => {
     utterance.volume = 1;
     utterance.rate = 1;
     utterance.pitch = 1;
-    console.log(utterance);
+    // console.log(utterance);
 };
-playText();
 const getVoice = () => {
     voicesArray = synth.getVoices();
-    console.log(voicesArray);
-    let voice = voicesArray.find((x) => {
-        x.name === "Microsoft David - English (United States)";
-    });
-    console.log(voice)
+    // console.log(voicesArray);
+
+    const voicesToFind = [
+        'Google UK English Male',
+        'Google UK English Female',
+        'Microsoft David - US',
+        'Microsoft Zira - US',
+    ];
+
+
+    let voice = voicesArray.find((x) => voicesToFind.includes(x.name));
+
+    console.log(voice);
     if(voice) {
         console.log("voice founded");
         playText(text,voice);
