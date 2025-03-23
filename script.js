@@ -22,7 +22,6 @@ const playText = (text,voice) => {
     utterance.rate = 1;
     utterance.pitch = 1;
     console.log(utterance);
-    
 };
 playText();
 const getVoice = () => {
@@ -31,10 +30,12 @@ const getVoice = () => {
     let voice = voicesArray.find((x) => {
         x.name === "Microsoft David - English (United States)";
     });
-    // if(voice) {
-    //     playText(text,voice);
-    // }
-    console.log(voice);
+    console.log(voice)
+    if(voice) {
+        playText(text,voice);
+    } else {
+        console.log("voice not found");
+    }
 }
 synth.onvoiceschanged = getVoice;
 
