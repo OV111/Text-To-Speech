@@ -4,20 +4,48 @@ const resumeBtn = document.getElementById("resume");
 const listenBtn = document.getElementById("listen");
 
 
-const selectNode = document.querySelectorAll("#choose");
-console.log(selectNode[0][0].innerText)
+const selectNode = document.querySelector("#choose");
+const choosedVoice = null;
+console.log(selectNode)
+
+
+// const populateVoices = () => {
+//     const synth = window.speechSynthesis;
+//     const voicesArray = synth.getVoices();
+//     selectNode.innerHTML = ""; // Clear existing options
+//     voicesArray.forEach(voice => {
+//         const option = document.createElement("option");
+//         option.value = voice.name;
+//         option.textContent = `${voice.name} (${voice.lang})`;
+//         selectNode.appendChild(option);
+//     });
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const text = textInput.value;
 let voicesArray = [];
 const synth = window.speechSynthesis;
 
-const playText = (text,voice) => {
+const playText = (text,voiceName) => {
     const lang = "en-US";
     
     // Setting SpeechSynthesisUtterance
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.voice = voice;
+    utterance.voice = voiceName;
     utterance.volume = 1;
     utterance.rate = 1;
     utterance.pitch = 1;
