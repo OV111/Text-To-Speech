@@ -21,20 +21,6 @@ console.log(selectNode)
 //     });
 // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const text = textInput.value;
 let voicesArray = [];
 const synth = window.speechSynthesis;
