@@ -10,30 +10,36 @@ const synth = window.speechSynthesis;
 
 
 
-function getVoice() {
+const text = textInput.value;
+const playText = (text,voice) => {
+    const lang = "en-US";
+    
+    // Setting SpeechSynthesisUtterance
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.voice = voice;
+    utterance.volume = 1;
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    console.log(utterance);
+    
+};
+playText();
+const getVoice = () => {
     voicesArray = synth.getVoices();
     console.log(voicesArray);
     let voice = voicesArray.find((x) => {
-        x.name = "Microsoft David - English (United States)";
+        x.name === "Microsoft David - English (United States)";
     });
-    if(voice) {
-        playText(text,voice);
-    }
+    // if(voice) {
+    //     playText(text,voice);
+    // }
+    console.log(voice);
 }
 synth.onvoiceschanged = getVoice;
 
 
-
-
-const playText = (text,voice) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    const text = textInput.value;
-    const lang = "en-US";
-    utterance.text = text;
-    utterance.lang = lang;
-    console.log(utterance);
-};
-listenBtn.addEventListener("click", playText);
+listenBtn.addEventListener("click", getVoice);
 
 
 
