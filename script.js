@@ -4,29 +4,38 @@ const resumeBtn = document.getElementById("resume");
 const listenBtn = document.getElementById("listen");
 
 
+
+const synth = window.speechSynthesis;
 const selectNode = document.querySelector("#choose");
-const choosedVoice = null;
-console.log(selectNode)
 
 
-// const populateVoices = () => {
-//     const synth = window.speechSynthesis;
-//     const voicesArray = synth.getVoices();
-//     selectNode.innerHTML = ""; // Clear existing options
-//     voicesArray.forEach(voice => {
-//         const option = document.createElement("option");
-//         option.value = voice.name;
-//         option.textContent = `${voice.name} (${voice.lang})`;
-//         selectNode.appendChild(option);
-//     });
-// };
+const populateVoice = () => {
+    let voicesArray = synth.getVoices();
+    selectNode.innerHTML = "";
+
+    voicesArray.forEach(voice => {
+        const option = document.createElement("option");
+        option.value = voice.name;
+        option.textContent = voice.name;
+        selectNode.appendChild(option);
+    })
+    console.log(selectNode);
+};
+
+populateVoice();
+
+selectNode.addEventListener("change", (event) => {
+    let choosedVoice = event.target.value;
+    console.log(choosedVoice);
+})
+
+
 
 const text = textInput.value;
-let voicesArray = [];
-const synth = window.speechSynthesis;
+
 
 const playText = (text,voiceName) => {
-    const lang = "en-US";
+    const lang = "en-US"; 
     // Setting SpeechSynthesisUtterance
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
@@ -36,31 +45,10 @@ const playText = (text,voiceName) => {
     utterance.pitch = 1;
     // console.log(utterance);
 };
-const getVoice = () => {
-    voicesArray = synth.getVoices();
-    // console.log(voicesArray);
 
-    const voicesToFind = [
-        'Google UK English Male',
-        'Google UK English Female',
-        'Microsoft David - US',
-        'Microsoft Zira - US',
-    ];
+synth.onvoiceschanged = populateVoice;
 
-
-    let voice = voicesArray.find((x) => voicesToFind.includes(x.name));
-
-    // console.log(voice);
-    if(voice) {
-        console.log("voice founded");
-        playText(text,voice);
-    } else {
-        console.log("voice not found");
-    }
-}
-synth.onvoiceschanged = getVoice;
-
-listenBtn.addEventListener("click", getVoice);
+listenBtn.addEventListener("click", populateVoice);
 
 pauseBtn.addEventListener("click", () => {
     pauseBtn.style.display = "none";
