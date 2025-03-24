@@ -26,7 +26,6 @@ const populateVoice = () => {
         selectNode.value = choosedVoice;
     }
 };
-
 selectNode.addEventListener("change", (event) => {
     choosedVoice = event.target.value;
 });
@@ -34,7 +33,6 @@ selectNode.addEventListener("change", (event) => {
 const playText = (text,voiceName) => {
     const lang = "en-US"; 
     const voice = voicesArray.find(v => v.name === voiceName);
-
     // Cancelling past text
     synth.cancel();
     // Setting SpeechSynthesisUtterance
@@ -46,7 +44,6 @@ const playText = (text,voiceName) => {
     utterance.pitch = 1;
     synth.speak(utterance);
 };
-
 listenBtn.addEventListener("click", () => {
     const text = textInput.value.trim(); 
     if(text.length > 0) {
@@ -55,7 +52,6 @@ listenBtn.addEventListener("click", () => {
         alert("No Text to speak!");
     }
 });
-
 pauseBtn.addEventListener("click", () => {
     synth.pause();
     pauseBtn.style.display = "none";
