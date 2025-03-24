@@ -8,6 +8,8 @@ const synth = window.speechSynthesis;
 let voicesArray = [];
 let choosedVoice = null;
 
+synth.cancel();
+
 const populateVoice = () => {
     voicesArray = synth.getVoices();
     selectNode.innerHTML = "";
@@ -17,8 +19,7 @@ const populateVoice = () => {
         option.value = voice.name;
         option.textContent = voice.name;
         selectNode.appendChild(option);
-    })
-
+    });
     // Choosed Defaultly first voice
     if(voicesArray.length > 0) {
         choosedVoice = voicesArray[0].name;
@@ -28,15 +29,14 @@ const populateVoice = () => {
 
 selectNode.addEventListener("change", (event) => {
     choosedVoice = event.target.value;
-    // console.log(choosedVoice);
-})
+});
 
-
-
-// const text = textInput.value;
 const playText = (text,voiceName) => {
     const lang = "en-US"; 
     const voice = voicesArray.find(v => v.name === voiceName);
+
+    // Cancelling past text
+    synth.cancel();
     // Setting SpeechSynthesisUtterance
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
@@ -44,27 +44,28 @@ const playText = (text,voiceName) => {
     utterance.volume = 1;
     utterance.rate = 1;
     utterance.pitch = 1;
-    console.log("vahe")
     synth.speak(utterance);
 };
 
-
 listenBtn.addEventListener("click", () => {
     const text = textInput.value.trim(); 
-    playText(text,choosedVoice);
+    if(text.length > 0) {
+        playText(text,choosedVoice);
+    } else {
+        alert("No Text to speak!");
+    }
 });
 
-
-synth.onvoiceschanged = populateVoice;
-populateVoice()
-
-
-
 pauseBtn.addEventListener("click", () => {
+    synth.pause();
     pauseBtn.style.display = "none";
     resumeBtn.style.display = "inline";
 });
 resumeBtn.addEventListener("click", () => {
+    synth.resume();
     resumeBtn.style.display = "none";
     pauseBtn.style.display = "inline";
 });
+
+synth.onvoiceschanged = populateVoice;
+setTimeout(populateVoice,100);
