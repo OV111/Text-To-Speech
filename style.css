@@ -1,26 +1,12 @@
 @keyframes spinBackgroundColor {
-    0% {
-        box-shadow: 0 0 15px #2c326e;
-    }
-    50% {
-        box-shadow: 0 0 10px #ff2963;
-    }
-    100% {
-        box-shadow: 0 0 10px #571571 
-        }
+    0% {box-shadow: 0 0 15px #2c326e;}
+    50% {box-shadow: 0 0 10px #ff2963;}
+    100% {box-shadow: 0 0 10px #571571;}
 }
 @keyframes spinTextColor {
-    0% {
-        /* transform: rotate3d(1, 1, 1, 0deg); */
-        text-shadow: 0 0 7px #f94d7b;
-    }
-    50% {
-        /* transform: rotate3d(1, 1, 1, 180deg); */
-        text-shadow: 0 0 7px #ff2963;
-    }
-    100% {
-        text-shadow: 0 0 7px #da0c43;
-    }
+    0% {text-shadow: 0 0 7px #f94d7b;}
+    50% {text-shadow: 0 0 7px #ff2963;}
+    100% {text-shadow: 0 0 7px #da0c43;}
 }
 /* !/ */
 /* ADD logo 3d rotate near h1 */
