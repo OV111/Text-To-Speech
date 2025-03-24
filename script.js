@@ -2,15 +2,14 @@ const textInput = document.getElementById("input");
 const pauseBtn = document.getElementById("pause");
 const resumeBtn = document.getElementById("resume");
 const listenBtn = document.getElementById("listen");
-
-
-
-const synth = window.speechSynthesis;
 const selectNode = document.querySelector("#choose");
 
+const synth = window.speechSynthesis;
+let voicesArray = [];
+let choosedVoice = null;
 
 const populateVoice = () => {
-    let voicesArray = synth.getVoices();
+    voicesArray = synth.getVoices();
     selectNode.innerHTML = "";
 
     voicesArray.forEach(voice => {
@@ -19,36 +18,47 @@ const populateVoice = () => {
         option.textContent = voice.name;
         selectNode.appendChild(option);
     })
-    console.log(selectNode);
+
+    // Choosed Defaultly first voice
+    if(voicesArray.length > 0) {
+        choosedVoice = voicesArray[0].name;
+        selectNode.value = choosedVoice;
+    }
 };
 
-populateVoice();
-
 selectNode.addEventListener("change", (event) => {
-    let choosedVoice = event.target.value;
-    console.log(choosedVoice);
+    choosedVoice = event.target.value;
+    // console.log(choosedVoice);
 })
 
 
 
-const text = textInput.value;
-
-
+// const text = textInput.value;
 const playText = (text,voiceName) => {
     const lang = "en-US"; 
+    const voice = voicesArray.find(v => v.name === voiceName);
     // Setting SpeechSynthesisUtterance
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
-    utterance.voice = voiceName;
+    utterance.voice = voice;
     utterance.volume = 1;
     utterance.rate = 1;
     utterance.pitch = 1;
-    // console.log(utterance);
+    console.log("vahe")
+    synth.speak(utterance);
 };
 
-synth.onvoiceschanged = populateVoice;
 
-listenBtn.addEventListener("click", populateVoice);
+listenBtn.addEventListener("click", () => {
+    const text = textInput.value.trim(); 
+    playText(text,choosedVoice);
+});
+
+
+synth.onvoiceschanged = populateVoice;
+populateVoice()
+
+
 
 pauseBtn.addEventListener("click", () => {
     pauseBtn.style.display = "none";
